@@ -15,6 +15,7 @@ import java.net.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -158,6 +159,10 @@ public class MainFrame extends JFrame
 		final JTextArea textArea = new JTextArea();
 		textArea.setText("");
 		textArea.setBounds(10, 95, 414, 156);
+		//激活自动换行功能 
+		textArea.setLineWrap(true);
+		// 激活断行不断字功能
+		textArea.setWrapStyleWord(true);
 		contentPane.add(textArea);
 		
 		//Check按钮
