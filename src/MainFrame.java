@@ -20,7 +20,6 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-
 public class MainFrame extends JFrame
 {
 
@@ -48,10 +47,10 @@ public class MainFrame extends JFrame
 			}
 		});
 	}
-	
+
 	public static String sendGet(String url)
 	{
-		//连接URL并返回源码
+		// 连接URL并返回源码
 		// result存放抓取结果
 		String result = "";
 		BufferedReader input = null;
@@ -93,25 +92,24 @@ public class MainFrame extends JFrame
 		}
 		return result;
 	}
-	
+
 	public static String getResult(String code, String regex)
 	{
-		//用正则匹配内容并返回结果
+		// 用正则匹配内容并返回结果
 		String result = "";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(code);
-		if(matcher.find())
+		if (matcher.find())
 		{
 			result = matcher.group(1);
-		}
-		else
+		} else
 		{
-			//not find
+			// not find
 			result = "Not Found~";
 		}
 		return result;
 	}
-	
+
 	public String check()
 	{
 		String url = inputUrl.getText();
@@ -133,39 +131,43 @@ public class MainFrame extends JFrame
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		inputRegex = new JTextField();
 		inputRegex.setBounds(73, 64, 213, 21);
 		contentPane.add(inputRegex);
 		inputRegex.setColumns(10);
-		
+
 		inputUrl = new JTextField();
 		inputUrl.setColumns(10);
 		inputUrl.setBounds(73, 23, 213, 21);
 		contentPane.add(inputUrl);
-		
+
 		JLabel labUrl = new JLabel("URL");
 		labUrl.setHorizontalAlignment(SwingConstants.CENTER);
 		labUrl.setFont(new Font("微软雅黑", Font.PLAIN, 18));
 		labUrl.setBounds(10, 24, 54, 18);
 		contentPane.add(labUrl);
-		
+
 		JLabel labRegex = new JLabel("Regex");
 		labRegex.setHorizontalAlignment(SwingConstants.CENTER);
 		labRegex.setFont(new Font("微软雅黑", Font.PLAIN, 18));
 		labRegex.setBounds(9, 63, 54, 22);
 		contentPane.add(labRegex);
-		
+
 		final JTextArea textArea = new JTextArea();
+		JScrollPane sp = new JScrollPane(textArea);
+		sp.setBounds(10, 95, 414, 156);
 		textArea.setText("");
 		textArea.setBounds(10, 95, 414, 156);
-		//激活自动换行功能 
+		// 激活自动换行功能
 		textArea.setLineWrap(true);
 		// 激活断行不断字功能
 		textArea.setWrapStyleWord(true);
-		contentPane.add(textArea);
-		
-		//Check按钮
+		textArea.setCaretPosition(textArea.getText().length());
+
+		contentPane.add(sp);
+
+		// Check按钮
 		JButton btnCheck = new JButton("Test");
 		btnCheck.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		btnCheck.setBounds(301, 22, 102, 63);
@@ -180,6 +182,6 @@ public class MainFrame extends JFrame
 				textArea.setText(result);
 			}
 		});
-		
+
 	}
 }
